@@ -1,0 +1,28 @@
+name: Generate QR Code
+
+on:
+  push:
+    branches:
+      - main  # Runs the workflow on every push to the main branch
+
+jobs:
+  generate_qr:
+    runs-on: ubuntu-latest  # Uses Ubuntu as the environment
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Fetches your repository
+
+      - name: Install QR Code Generator
+        run: sudo apt-get install -y qrencode  # Installs qrencode
+
+      - name: Generate QR Code
+        run: |
+          qrencode -o qr-code.png "https://github.com/jenicaborlagdan/please-click-me"
+          echo "QR Code generated successfully!"
+
+      - name: Upload QR Code as an Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: qr-code
+          path: qr-code.png
