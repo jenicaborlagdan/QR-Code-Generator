@@ -21,8 +21,8 @@ jobs:
           qrencode -o qr-code.png "https://github.com/jenicaborlagdan/please-click-me"
           echo "QR Code generated successfully!"
 
-      - name: Upload QR Code as an Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: qr-code
-          path: qr-code.png
+     - name: Upload QR Code as an Artifact
+  uses: actions/upload-artifact@v3
+  with:
+    name: qr-code
+    path: ./qr-code.png
